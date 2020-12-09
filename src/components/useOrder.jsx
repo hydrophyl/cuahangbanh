@@ -12,20 +12,21 @@ const useOrder = () => {
   const getRoom = state.room;
   const getEmail = state.email;
   const importShoppingCart = async (prop) => {
+    await setState((state) => ({ ...state, orderedItems: prop }));
+  };
+  const pushOrder = async () => {
     try {
-      await setState((state) => ({ ...state, orderedItems: prop }));
       await addNewOrder(
         state.name,
         state.room,
         state.email,
-        state.orderedItems
+        currentOrderedItems
       );
     } catch (error) {
       console.log(error);
     }
     history.push("/receipt");
   };
-
   const addInfos = (props) => {
     setState((state) => ({
       ...state,
@@ -42,7 +43,8 @@ const useOrder = () => {
     addInfos,
     getName,
     getRoom,
-    getEmail
+    getEmail,
+    pushOrder
   };
 };
 

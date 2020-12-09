@@ -15,6 +15,7 @@ export const addNewOrder = (name, room, email, orderedItems) => {
       "Content-Type": "application/json"
     }
   };
+  console.log(orderedItems);
   const body = JSON.stringify({
     name,
     room,

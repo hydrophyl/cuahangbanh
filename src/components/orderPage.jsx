@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useOrder from "./useOrder.jsx";
 
 const OrderPage = () => {
-  const { importShoppingCart } = useOrder();
+  const { importShoppingCart, pushOrder } = useOrder();
   const [product, setProduct] = useState({
     size: "",
     topping: "",
@@ -32,6 +32,14 @@ const OrderPage = () => {
   const incQuantity = () => {
     setProduct({ ...product, quantity: (product.quantity += 1) });
   };
+
+  useEffect(() => {
+    const updateOrderedItems = async () => {
+      importShoppingCart(shoppingCart);
+    };
+    updateOrderedItems();
+    console.log("re-render?");
+  }, [shoppingCart]);
 
   return (
     <div>
@@ -64,6 +72,7 @@ const OrderPage = () => {
       <button onClick={() => importShoppingCart(shoppingCart)}>
         Click when youre ready!
       </button>
+      <button onClick={() => pushOrder()}>pushOrder</button>
     </div>
   );
 };
