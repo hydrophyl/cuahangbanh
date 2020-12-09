@@ -14,12 +14,6 @@ const useOrder = () => {
   const importShoppingCart = async (prop) => {
     try {
       await setState((state) => ({ ...state, orderedItems: prop }));
-      console.log(
-        state.name,
-        state.room,
-        state.email,
-        JSON.stringify(state.orderedItems)
-      );
       await addNewOrder(
         state.name,
         state.room,

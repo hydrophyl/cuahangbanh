@@ -8,7 +8,6 @@ const InfoPage = () => {
   const { register, handleSubmit, errors } = useForm({ mode: "onBlur" });
   const { addInfos } = useOrder();
   const onSubmit = (data) => {
-    console.log(data);
     const name = data.name;
     const room = data.room;
     const email = data.email;
